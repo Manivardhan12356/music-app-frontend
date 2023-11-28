@@ -921,26 +921,43 @@
 
 
 import Card from 'react-bootstrap/Card';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
+function Songs() {
+   const [songs, setSongs] = useState([]);
 
-function Songs({ filteredSongs }) {
-  
+   useEffect(() => {
+      // Make a GET request to your Flask API
+      axios.get('https://python-songs-api.onrender.com/')
+         .then(response => {
+            console.log(response.data)
+            setSongs(response.data);
+         })
+         .catch(error => {
+            console.error('Error fetching data:', error);
+         });
+   }, []); // Empty dependency array ensures the effect runs once on mount
 
    return (
-      <div className='flex gap-5 flex-wrap justify-center py-10 bg-slate-500'>
-         {filteredSongs.map(song => (
-            <Card key={song.title} style={{ width: '18rem', margin: '10px' }}>
+      <div className='bg-gray-300'>
+         <h1 className='text-5xl text-center py-5 font-bold'>Songs</h1>
+      <div className='flex gap-5 flex-wrap justify-center py-10 '> 
+         {songs.map(song => (
+            <Card key={song.title} style={{ width: '18rem', margin: '10px' }} className='hover:shadow-md hover:scale-110 transition'>
                <Card.Img variant="top" src={song.img_src} alt={song.title} />
                <Card.Body>
                   <Card.Title>{song.title}</Card.Title>
                   <Card.Text>
                      Artist: {song.artist}<br />
                      Album: {song.album}<br />
+
                   </Card.Text>
                  <audio src={song.src} controls className='w-full'></audio>
                </Card.Body>
             </Card>
          ))}
+         </div>
       </div>
    );
 }

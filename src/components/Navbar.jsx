@@ -4,17 +4,18 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function NavScrollExample({ setSearchTerm, searchTerm }) {
+function NavScrollExample() {
    return (
-      <Navbar expand="lg" className="bg-green-100">
+      <Navbar expand="lg" className="bg-gray-100 border-b-[1px] border-gray-300">
          <Container fluid>
-            <Navbar.Brand href="#">Hunter Music</Navbar.Brand>
+            <Navbar.Brand href="/" >Hunter Music</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
                <Nav
                   className="me-auto my-2 my-lg-0"
                   style={{ maxHeight: '100px' }}
                   navbarScroll
+
                >
                   {/* <Nav.Link href="#action1">Home</Nav.Link>
                   <Nav.Link href="#action2">Link</Nav.Link>
@@ -38,8 +39,6 @@ function NavScrollExample({ setSearchTerm, searchTerm }) {
                      placeholder="Search"
                      className="me-2"
                      aria-label="Search"
-                     value={searchTerm}
-                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                </Form>
             </Navbar.Collapse>
