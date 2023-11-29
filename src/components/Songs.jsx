@@ -937,7 +937,8 @@ function Songs() {
          .catch(error => {
             console.error('Error fetching data:', error);
          });
-   }, []); // Empty dependency array ensures the effect runs once on mount
+   }, []); 
+   
 
    return (
       <div className='bg-gray-300'>
